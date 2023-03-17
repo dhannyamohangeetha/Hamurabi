@@ -53,10 +53,6 @@ Here are the standard instructions for the game:
 > 
 > **Rule wisely and you will be showered with appreciation at the end of your term. Rule poorly and you will be kicked out of office!**
 
-### Maven
-
-There is NO `pom.xml` file in this repo. You need to add that. Use `vscode` or `IntelliJ` to make sure your project is a Maven project with a POM file.
-
 ### Details
 
 Define a single class named `Hammurabi`. Use the following skeleton (but leave out the `//` comments):
