@@ -1,4 +1,8 @@
 # class Hamurabi(): abc
+
+import random
+import math
+
 def play_game(self):
     print("Let's play!")
 
@@ -43,17 +47,34 @@ askHowManyAcresToSell(17 , 200)
 
 def askHowMuchGrainToFeedPeople(bushels:int):
 
+    grain_to_feed_people = int(input("How much grain do you need to feed people?: "))
+    if bushels > grain_to_feed_people:
+        print("We have enough grain to feed people ")
+    bushels = bushels - grain_to_feed_people
+    print(bushels)
 
-    pass
+askHowMuchGrainToFeedPeople(2000)
+
+
+
 
 def askHowManyAcresToPlant(acresOwned:int, population:int,bushels:int):
-    pass
+    acres_to_plant = int(input("How many acres to plant with the grain?: "))
+    if acres_to_plant > total_acres:
+    elif acres_to_plant> population * 10
+    else:acres_to_plant * 2 > bushels
+
 
 def plagueDeaths(population:int):
-    pass
+    if random.random() < 0.15:
+        plague_dead = math.ceil(population/2)
+        return population - plague_dead
+    else :
+        return 0
+
 
 def starvationDeaths(population:int,bushelsFedToPeople:int):
-   pass
+
 
 def uprising(population:int,howManyPeopleStarved:int): #return boolean
     pass
