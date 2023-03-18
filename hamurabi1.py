@@ -1,4 +1,4 @@
-# class Hamurabi():
+# class Hamurabi(): abc
 def play_game(self):
     print("Let's play!")
 
