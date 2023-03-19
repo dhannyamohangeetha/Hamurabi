@@ -46,13 +46,13 @@ def askHowManyAcresToSell(price: int, bushel: int):
 
 def askHowMuchGrainToFeedPeople():
     global starved_deaths, bushels
-
+    global grain_to_feed_people
     grain_to_feed_people = int(input("How much grain do you need to feed people?: "))
     if bushels > grain_to_feed_people:
         print("We have enough grain to feed people ")
     bushels = bushels - grain_to_feed_people
-    starved_deaths = population - grain_to_feed_people // 20 # check with kesha
-    print(bushels)
+    # starved_deaths = population - grain_to_feed_people // 20  # check with kesha
+    # print(bushels)
 
 def askHowManyAcresToPlant():
     global acres_to_plant
@@ -97,9 +97,9 @@ def uprising():
     global starved_deaths
     if starved_deaths > 0.45:
         print("You ruled poorly. Game Over ")
-        return true
+        return True
     else:
-        return false
+        return False
 
 
 def immigrants():
@@ -111,20 +111,23 @@ def immigrants():
         num_immigrants = (20 * total_acres + bushels) / (100 * population) + 1
         return num_immigrants
 
-def harvest(acres:int,bushels_used_as_seed:int):
+def harvest():
     global acres_to_plant
-    bushels_used_as_seed = random.randrange(1,6)
+    global bushels_harvested
+    bushels_used_as_seed = random.randrange(1, 6)
     bushels_harvested = acres_to_plant * bushels_used_as_seed
     return bushels_harvested
 
-def grainEatenByRats(bushels:int):
-    global rat_ate
-    global bushelsUsedAsSeed
+def grainEatenByRats():
+    # global rat_ate
+    global bushels_harvested
+    global bushels
 
-    rat_infestation_chance=random.randint(1,4)
+    rat_infestation_chance = random.randint(1, 4)
     if rat_infestation_chance <= 4:
-        percentage_rat_ate =  random.uniform(0.1,0.3)
-        rat_ate=percentage_rat_ate*bushelsUsedAsSeed
+        percentage_rat_ate = random.uniform(0.1, 0.3)
+        rat_ate = percentage_rat_ate * bushels_harvested
+        print('rat_ate: ', rat_ate)
         bushels = bushels - rat_ate
     else:
         print("not affected by rat")
