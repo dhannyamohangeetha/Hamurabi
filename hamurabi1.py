@@ -6,7 +6,7 @@ import math
 def play_game(self):
     print("Let's play!")
 
-
+year = 1
 total_acres = 1000
 bushels = 2800
 acres_value = 19
@@ -16,24 +16,22 @@ grain_to_feed_people = 0
 num_immigrants = 0
 acres_to_plant = 0
 bushels_harvested = 0
-land_price = 0
 rat_ate = 0
 
 
-def ask_how_many_acres_to_buy(price: int, bushel: int):
+def ask_how_many_acres_to_buy():
     # asking the player how much land he wants to buy
-    global total_acres
-    global bushels
+    global total_acres, bushels, acres_value
     buy_acres = int(input("How many acres do you want to buy?: "))
 
-    if buy_acres * price < bushel:
+    if buy_acres * acres_value < bushels:
         print("We have enough bushels to buy the land.")
         total_acres = total_acres + buy_acres
-        bushels = bushel - (buy_acres * price)
+        bushels = bushels - (buy_acres * acres_value)
         # print(total_acres)
         # print(bushel)
 
-def ask_how_many_acres_to_sell(price: int, bushel: int):
+def ask_how_many_acres_to_sell():
     # Asking the player how many acres he wants to sell
     global total_acres
     global bushels
@@ -41,7 +39,7 @@ def ask_how_many_acres_to_sell(price: int, bushel: int):
     if acres_sell < total_acres:
         print("we have enough acres to sell")
     total_acres = total_acres - acres_sell
-    bushels = bushels + (acres_sell * price)
+    bushels = bushels + (acres_sell * acres_value)
 
 def ask_how_much_grain_to_feed_people():
     global starved_deaths, bushels
@@ -49,8 +47,8 @@ def ask_how_much_grain_to_feed_people():
     grain_to_feed_people = int(input("How much grain do you need to feed people?: "))
     if bushels > grain_to_feed_people:
         print("We have enough grain to feed people ")
-    bushels = bushels - grain_to_feed_people
-    # starved_deaths = population - grain_to_feed_people // 20
+        bushels = bushels - grain_to_feed_people
+        starved_deaths = population - grain_to_feed_people // 20
     # print(bushels)
 
 def ask_how_many_acres_to_plant():
@@ -103,13 +101,15 @@ def uprising():
 
 
 def immigrants():
-    global starved_deaths
-    global num_immigrants
+    global starved_deaths, num_immigrants, population
     if starved_deaths > 0:
         num_immigrants = 0
     else:
-        num_immigrants = (20 * total_acres + bushels) / (100 * population) + 1
-        return num_immigrants
+        num_immigrants = (20 * total_acres + bushels) // (100 * population) + 1
+        #  // is used for rounding up the float number.
+        population = population + num_immigrants
+
+
 
 def harvest():
     global acres_to_plant
@@ -123,10 +123,10 @@ def grain_eaten_by_rats():
     global bushels_harvested
     global bushels
 
-    rat_infestation_chance = random.randint(1, 4)
-    if rat_infestation_chance <= 4:
+    rat_infestation_chance = random.randint(1, 100)
+    if rat_infestation_chance <= 40:
         percentage_rat_ate = random.uniform(0.1, 0.3)
-        rat_ate = percentage_rat_ate * bushels_harvested
+        rat_ate = round(percentage_rat_ate * bushels_harvested)
         print('rat_ate: ', rat_ate)
         bushels = bushels - rat_ate
     else:
@@ -137,10 +137,10 @@ def grain_eaten_by_rats():
 
 
 def new_cost_of_land():
-    global land_price
-    land_price = random.randint(17, 23)
-    print("The price of land will be", land_price, "bushels per acre next year***")
-    return land_price
+    global acres_value
+    acres_value = random.randint(17, 23)
+    print("The price of land will be", acres_value, "bushels per acre next year***")
+
 
 def printtest():
     print('total_acres: ', total_acres)
@@ -150,38 +150,41 @@ def printtest():
     print('bushels_harvested: ', bushels_harvested)
 
 
-ask_how_many_acres_to_buy(acres_value, bushels)
-ask_how_many_acres_to_sell(acres_value, bushels)
-ask_how_much_grain_to_feed_people()
-printtest()
-ask_how_many_acres_to_plant()
-printtest()
-plague_deaths()
-printtest()
-starvation_deaths()
-printtest()
-uprising()
-immigrants()
-harvest()
-grain_eaten_by_rats()
-printtest()
 
 
 def print_summary():
     print(f"O great Hammurabi!\n"
-            f"You are in year 1 of your ten year rule.\n"
+            f"You are in year {year} of your ten year rule.\n"
             f"In the previous year {starved_deaths} people starved to death.\n"
             f"In the previous year {num_immigrants} people entered the kingdom.\n"
             f"The population is now {population}.\n"
             f"We harvested {bushels_harvested} bushels at 3 bushels per acre."
             f"Rats destroyed {rat_ate} bushels, leaving {bushels} bushels in storage.\n"
             f"The city owns {total_acres} acres of land.\n"
-            f"Land is currently worth {land_price} bushels per acre.")
-print_summary()
+            f"Land is currently worth {acres_value} bushels per acre.")
+
 
 def final_summary():
     print("CONGRATULATION \n YOU SURVIVED 10 YEARS ")
 
+
+for i in range(10):
+    ask_how_many_acres_to_buy()
+    ask_how_many_acres_to_sell()
+    ask_how_much_grain_to_feed_people()
+    printtest()
+    ask_how_many_acres_to_plant()
+    printtest()
+    plague_deaths()
+    printtest()
+    starvation_deaths()
+    printtest()
+    uprising()
+    immigrants()
+    harvest()
+    grain_eaten_by_rats()
+    printtest()
+    print_summary()
 
 final_summary()
 
