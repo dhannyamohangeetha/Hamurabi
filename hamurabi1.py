@@ -1,4 +1,3 @@
-# class Hamurabi(): abc
 
 import random
 import math
@@ -17,11 +16,11 @@ grain_to_feed_people = 0
 num_immigrants = 0
 acres_to_plant = 0
 bushels_harvested = 0
+land_price = 0
+rat_ate = 0
 
 
-# hamurabi = Hamurabi()
-# hamurabi.play_game()
-def askHowManyAcresToBuy(price: int, bushel: int):
+def ask_how_many_acres_to_buy(price: int, bushel: int):
     # asking the player how much land he wants to buy
     global total_acres
     global bushels
@@ -34,7 +33,7 @@ def askHowManyAcresToBuy(price: int, bushel: int):
         # print(total_acres)
         # print(bushel)
 
-def askHowManyAcresToSell(price: int, bushel: int):
+def ask_how_many_acres_to_sell(price: int, bushel: int):
     # Asking the player how many acres he wants to sell
     global total_acres
     global bushels
@@ -44,17 +43,17 @@ def askHowManyAcresToSell(price: int, bushel: int):
     total_acres = total_acres - acres_sell
     bushels = bushels + (acres_sell * price)
 
-def askHowMuchGrainToFeedPeople():
+def ask_how_much_grain_to_feed_people():
     global starved_deaths, bushels
     global grain_to_feed_people
     grain_to_feed_people = int(input("How much grain do you need to feed people?: "))
     if bushels > grain_to_feed_people:
         print("We have enough grain to feed people ")
     bushels = bushels - grain_to_feed_people
-    # starved_deaths = population - grain_to_feed_people // 20  # check with kesha
+    # starved_deaths = population - grain_to_feed_people // 20
     # print(bushels)
 
-def askHowManyAcresToPlant():
+def ask_how_many_acres_to_plant():
     global acres_to_plant
     acres_to_plant = int(input("How many acres to plant with the grain?: "))
     global bushels
@@ -73,7 +72,8 @@ def askHowManyAcresToPlant():
     bushels = bushels - acres_to_plant * 2
     # print(bushels)
 
-def plagueDeaths(population:int):
+def plague_deaths():
+    global population
     if random.random() < 0.15:
         plague_dead = math.ceil(population/2)
         return population - plague_dead
@@ -81,7 +81,7 @@ def plagueDeaths(population:int):
         return 0
 
 
-def starvationDeaths():
+def starvation_deaths():
     global starved_deaths
     global population;
     starved_deaths = population - grain_to_feed_people // 20
@@ -118,8 +118,8 @@ def harvest():
     bushels_harvested = acres_to_plant * bushels_used_as_seed
     return bushels_harvested
 
-def grainEatenByRats():
-    # global rat_ate
+def grain_eaten_by_rats():
+    global rat_ate
     global bushels_harvested
     global bushels
 
@@ -133,28 +133,62 @@ def grainEatenByRats():
         print("not affected by rat")
 
 
-def newCostOfLand():
+
+
+
+def new_cost_of_land():
+    global land_price
     land_price = random.randint(17, 23)
     print("The price of land will be", land_price, "bushels per acre next year***")
     return land_price
 
+def printtest():
+    print('total_acres: ', total_acres)
+    print('bushels: ', bushels)
+    print('starved_deaths: ', starved_deaths)
+    print('population: ', population)
+    print('bushels_harvested: ', bushels_harvested)
 
-def printSummary():
-    print(f"O great Hammurabi!
+
+ask_how_many_acres_to_buy(acres_value, bushels)
+ask_how_many_acres_to_sell(acres_value, bushels)
+ask_how_much_grain_to_feed_people()
+printtest()
+ask_how_many_acres_to_plant()
+printtest()
+plague_deaths()
+printtest()
+starvation_deaths()
+printtest()
+uprising()
+immigrants()
+harvest()
+grain_eaten_by_rats()
+printtest()
+
+
+def print_summary():
+    print(f"O great Hammurabi!\n"
             f"You are in year 1 of your ten year rule.\n"
-            f"In the previous year 0 people starved to death.\n"
-            f"In the previous year 5 people entered the kingdom.\n"
-            f"The population is now 100.\n"
-            f"We harvested 3000 bushels at 3 bushels per acre."
-            f"Rats destroyed 200 bushels, leaving 2800 bushels in storage.\n"
-            f"The city owns 1000 acres of land.\n"
-            f"Land is currently worth 19 bushels per acre.")
+            f"In the previous year {starved_deaths} people starved to death.\n"
+            f"In the previous year {num_immigrants} people entered the kingdom.\n"
+            f"The population is now {population}.\n"
+            f"We harvested {bushels_harvested} bushels at 3 bushels per acre."
+            f"Rats destroyed {rat_ate} bushels, leaving {bushels} bushels in storage.\n"
+            f"The city owns {total_acres} acres of land.\n"
+            f"Land is currently worth {land_price} bushels per acre.")
+print_summary()
+
+def final_summary():
+    print("CONGRATULATION \n YOU SURVIVED 10 YEARS ")
+
+
+final_summary()
 
 
 
-    pass
 
-def final_Summary():
-    pass
+
+
 
 
