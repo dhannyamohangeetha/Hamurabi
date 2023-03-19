@@ -10,6 +10,7 @@ total_acres = 1000
 bushels = 2800
 acres_value = 19
 population = 100
+starved_deaths = 0
 
 
 
@@ -28,32 +29,34 @@ def askhowmanyAcresToBuy(price:int,bushel:int):
         print(bushel)
 
 
-askhowmanyAcresToBuy(17 , 2800)
+
 
 def askHowManyAcresToSell(price:int , bushels:int):
     # Asking the player how many acres he wants to sell
-     global total_acres
+    global total_acres
 
-     acres_sell = int(input("How many acres will you sell?: "))
-     if acres_sell < total_acres:
-         print("we have enough acres to sell")
-     total_acres = total_acres - acres_sell
-     bushels = bushels + (acres_sell * price)
-     print(total_acres)
-     print(bushels)
-
-askHowManyAcresToSell(17 , 200)
+    acres_sell = int(input("How many acres will you sell?: "))
+    if acres_sell < total_acres:
+        print("we have enough acres to sell")
+    total_acres = total_acres - acres_sell
+    bushels = bushels + (acres_sell * price)
+    print(total_acres)
+    print(bushels)
 
 
-def askHowMuchGrainToFeedPeople(bushels:int):
+
+
+def askHowMuchGrainToFeedPeople():
+    global starved_deaths, bushels
 
     grain_to_feed_people = int(input("How much grain do you need to feed people?: "))
     if bushels > grain_to_feed_people:
         print("We have enough grain to feed people ")
     bushels = bushels - grain_to_feed_people
+    starved_deaths = population - grain_to_feed_people // 20
     print(bushels)
 
-askHowMuchGrainToFeedPeople(2000)
+
 
 
 
@@ -76,7 +79,7 @@ def askHowManyAcresToPlant(acresOwned:int, population:int,bushels:int):
 
 
 
-askHowManyAcresToPlant(1000 , 100, 1000)
+
 
 
 
@@ -89,26 +92,31 @@ def plagueDeaths(population:int):
 
 
 def starvationDeaths(population:int,bushelsFedToPeople:int):
-    starved_deaths = 0
-    population = population - starved_deaths
+    global starved_deaths
     if starved_deaths > 0:
         print("You did not feed well to your people.")
     else:
-        starved_death = 0
+        starved_deaths = 0
         print("You fed your people well.")
-
-starvationDeaths(100 , 2000)
-
+    population = population - starved_deaths
 
 
-def uprising(population:int,howManyPeopleStarved:int):
-    if starvationDeaths() > 0.45:
+
+
+
+def uprising():
+    global starved_deaths
+    if starved_deaths > 0.45:
+        print("You ruled poorly. Game Over ")
         return true
-    print("You ruled poorly. Game Over ")
+    else:
+        return false
 
-uprising(100 , 0)
+
+
 
 def immigrants(population:int,acresOwned:int,grainInStorage:int):
+    (20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1.
     pass
 
 def harvest(acres:int,bushelsUsedAsSeed:int):
