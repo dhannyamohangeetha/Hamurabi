@@ -28,9 +28,6 @@ def askhowmanyAcresToBuy(price:int,bushel:int):
         print(total_acres)
         print(bushel)
 
-
-
-
 def askHowManyAcresToSell(price:int , bushels:int):
     # Asking the player how many acres he wants to sell
     global total_acres
@@ -43,9 +40,6 @@ def askHowManyAcresToSell(price:int , bushels:int):
     print(total_acres)
     print(bushels)
 
-
-
-
 def askHowMuchGrainToFeedPeople():
     global starved_deaths, bushels
 
@@ -53,13 +47,8 @@ def askHowMuchGrainToFeedPeople():
     if bushels > grain_to_feed_people:
         print("We have enough grain to feed people ")
     bushels = bushels - grain_to_feed_people
-    starved_deaths = population - grain_to_feed_people // 20
+    starved_deaths = population - grain_to_feed_people // 20 # check with kesha
     print(bushels)
-
-
-
-
-
 
 def askHowManyAcresToPlant(acresOwned:int, population:int,bushels:int):
     acres_to_plant = int(input("How many acres to plant with the grain?: "))
@@ -76,12 +65,6 @@ def askHowManyAcresToPlant(acresOwned:int, population:int,bushels:int):
     print("You have enough population , acres and bushels to plant.")
     bushels = bushels - acres_to_plant * 2
     print(bushels)
-
-
-
-
-
-
 
 def plagueDeaths(population:int):
     if random.random() < 0.15:
@@ -101,9 +84,6 @@ def starvationDeaths(population:int,bushelsFedToPeople:int):
     population = population - starved_deaths
 
 
-
-
-
 def uprising():
     global starved_deaths
     if starved_deaths > 0.45:
@@ -111,19 +91,33 @@ def uprising():
         return true
     else:
         return false
+def immigrants():
+    global starved_deaths
+    global num_immigrants
+    if starved_deaths > 0:
+        num_immigrants = 0
+    else:
+        num_immigrants = (20 * total_acres + bushels) / (100 * population) + 1
+        return num_immigrants
 
-
-
-
-def immigrants(population:int,acresOwned:int,grainInStorage:int):
-    (20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1.
-    pass
-
-def harvest(acres:int,bushelsUsedAsSeed:int):
-    pass
+def harvest(acres:int,bushels_used_as_seed:int):
+    global acres_to_plant
+    bushels_used_as_seed = random.randrange(1,6)
+    bushels_harvested = acres_to_plant * bushels_used_as_seed
+    return bushels_harvested
 
 def grainEatenByRats(bushels:int):
-    pass
+    global rat_ate
+    global bushelsUsedAsSeed
+
+    rat_infestation_chance=random.randint(1,4)
+    if rat_infestation_chance <= 4:
+        percentage_rat_ate=  random.uniform(0.1,0.3)
+        rat_ate=percentage_rat_ate*bushelsUsedAsSeed
+        bushels = bushels - rat_ate
+    else:
+        print("not affected by rat")
+
 
 def newCostOfLand():
     pass
