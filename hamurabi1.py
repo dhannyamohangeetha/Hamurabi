@@ -51,24 +51,7 @@ def ask_how_much_grain_to_feed_people():
         starved_deaths = population - grain_to_feed_people // 20
     # print(bushels)
 
-def ask_how_many_acres_to_plant():
-    global acres_to_plant
-    acres_to_plant = int(input("How many acres to plant with the grain?: "))
-    global bushels
-    if acres_to_plant > total_acres:
-        print("You dont have enough acres to plant")
-    # population * 10 = each person can plant 10 acres.
-    elif population * 10 < acres_to_plant:
-        print("You don't have enough population to plant.")
-    # acres_to_plant * 2 = 2 bushels per acres
-    elif bushels < acres_to_plant * 2:
-        print("You dont have enough bushels to plant.")
 
-    else:
-        total_acres > acres_to_plant and population * 10 > acres_to_plant and bushels > acres_to_plant * 2
-    print("You have enough population , acres and bushels to plant.")
-    bushels = bushels - acres_to_plant * 2
-    # print(bushels)
 
 def plague_deaths():
     global population
@@ -170,7 +153,7 @@ for i in range(10):
     ask_how_many_acres_to_sell()
     ask_how_much_grain_to_feed_people()
     printtest()
-    ask_how_many_acres_to_plant()
+    ask_how_many_acres_to_plant_1()
     printtest()
     plague_deaths()
     printtest()
