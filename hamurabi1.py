@@ -149,9 +149,6 @@ def printtest():
     print('population: ', population)
     print('bushels_harvested: ', bushels_harvested)
 
-
-
-
 def print_summary():
     print(f"O great Hammurabi!\n"
             f"You are in year {year} of your ten year rule.\n"
