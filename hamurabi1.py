@@ -51,7 +51,7 @@ def ask_how_much_grain_to_feed_people():
         starved_deaths = population - grain_to_feed_people // 20
     # print(bushels)
 
-def ask_how_many_acres_to_plant():
+def temp():
     global acres_to_plant
     acres_to_plant = int(input("How many acres to plant with the grain?: "))
     global bushels
@@ -170,7 +170,7 @@ for i in range(10):
     ask_how_many_acres_to_sell()
     ask_how_much_grain_to_feed_people()
     printtest()
-    ask_how_many_acres_to_plant()
+    temp()
     printtest()
     plague_deaths()
     printtest()
