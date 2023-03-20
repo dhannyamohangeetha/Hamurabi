@@ -145,7 +145,7 @@ def new_cost_of_land():
 def printtest():
     print('total_acres: ', total_acres)
     print('bushels: ', bushels)
-    print('starved_deaths: ', starved_deaths)
+    # print('starved_deaths: ', starved_deaths)
     print('population: ', population)
     print('bushels_harvested: ', bushels_harvested)
 
