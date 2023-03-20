@@ -104,15 +104,6 @@ def uprising():
         return False
 
 
-def immigrants():
-    global starved_deaths, num_immigrants, population
-    if starved_deaths > 0:
-        num_immigrants = 0
-    else:
-        num_immigrants = (20 * total_acres + bushels) // (100 * population) + 1
-        #  // is used for rounding up the float number.
-        population = population + num_immigrants
-
 
 def harvest():
     global acres_to_plant
