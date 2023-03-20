@@ -1,10 +1,10 @@
-
 import random
 import math
 
 
 def play_game(self):
     print("Let's play!")
+
 
 year = 1
 total_acres = 1000
@@ -31,6 +31,7 @@ def ask_how_many_acres_to_buy():
         # print(total_acres)
         # print(bushel)
 
+
 def ask_how_many_acres_to_sell():
     # Asking the player how many acres he wants to sell
     global total_acres
@@ -41,6 +42,7 @@ def ask_how_many_acres_to_sell():
     total_acres = total_acres - acres_sell
     bushels = bushels + (acres_sell * acres_value)
 
+
 def ask_how_much_grain_to_feed_people():
     global starved_deaths, bushels
     global grain_to_feed_people
@@ -50,6 +52,7 @@ def ask_how_much_grain_to_feed_people():
         bushels = bushels - grain_to_feed_people
         starved_deaths = population - grain_to_feed_people // 20
     # print(bushels)
+
 
 def ask_how_many_acres_to_plant():
     global acres_to_plant
@@ -70,12 +73,13 @@ def ask_how_many_acres_to_plant():
     bushels = bushels - acres_to_plant * 2
     # print(bushels)
 
+
 def plague_deaths():
     global population
     if random.random() < 0.15:
-        plague_dead = math.ceil(population/2)
+        plague_dead = math.ceil(population / 2)
         return population - plague_dead
-    else :
+    else:
         return 0
 
 
@@ -110,13 +114,13 @@ def immigrants():
         population = population + num_immigrants
 
 
-
 def harvest():
     global acres_to_plant
     global bushels_harvested
     bushels_used_as_seed = random.randrange(1, 6)
     bushels_harvested = acres_to_plant * bushels_used_as_seed
     return bushels_harvested
+
 
 def grain_eaten_by_rats():
     global rat_ate
@@ -133,9 +137,6 @@ def grain_eaten_by_rats():
         print("not affected by rat")
 
 
-
-
-
 def new_cost_of_land():
     global acres_value
     acres_value = random.randint(17, 23)
@@ -150,18 +151,16 @@ def printtest():
     print('bushels_harvested: ', bushels_harvested)
 
 
-
-
 def print_summary():
     print(f"O great Hammurabi!\n"
-            f"You are in year {year} of your ten year rule.\n"
-            f"In the previous year {starved_deaths} people starved to death.\n"
-            f"In the previous year {num_immigrants} people entered the kingdom.\n"
-            f"The population is now {population}.\n"
-            f"We harvested {bushels_harvested} bushels at 3 bushels per acre."
-            f"Rats destroyed {rat_ate} bushels, leaving {bushels} bushels in storage.\n"
-            f"The city owns {total_acres} acres of land.\n"
-            f"Land is currently worth {acres_value} bushels per acre.")
+          f"You are in year {year} of your ten year rule.\n"
+          f"In the previous year {starved_deaths} people starved to death.\n"
+          f"In the previous year {num_immigrants} people entered the kingdom.\n"
+          f"The population is now {population}.\n"
+          f"We harvested {bushels_harvested} bushels at 3 bushels per acre."
+          f"Rats destroyed {rat_ate} bushels, leaving {bushels} bushels in storage.\n"
+          f"The city owns {total_acres} acres of land.\n"
+          f"Land is currently worth {acres_value} bushels per acre.")
 
 
 def final_summary():
@@ -187,11 +186,3 @@ for i in range(10):
     print_summary()
 
 final_summary()
-
-
-
-
-
-
-
-
